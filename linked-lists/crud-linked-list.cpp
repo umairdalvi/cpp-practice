@@ -7,69 +7,86 @@ public:
     int data;
     Node *next;
 
-    Node() {};
+    Node()
+    {
+        this->data = 0;
+        this->next = nullptr;
+    };
 
     Node(int data)
     {
         this->data = data;
         this->next = nullptr;
-    }
+    };
 };
 
-class LinkedList : public Node
+class LinkedList
 {
-public:
-    Node *HEAD;
-    int count;
+private:
+    Node *head;
 
+public:
     LinkedList()
     {
-        this->HEAD = nullptr;
-        this->count = 0;
+        head = nullptr;
     }
 
     void addAtStart(int data)
     {
         Node *newNode = new Node(data);
-        newNode->next = this->HEAD;
-        this->HEAD = newNode;
-
-        this->count++;
+        newNode->next = head;
+        head = newNode;
+        cout << "\n----------------------------------------\n";
+        cout << "Successfully inserted at the beginning.";
+        cout << "\n----------------------------------------\n\n";
     }
 
     void addAtEnd(int data)
     {
         Node *newNode = new Node(data);
-
-        if (count == 0)
+        if (head == nullptr)
         {
-            this->HEAD = newNode;
+            head = newNode;
+            cout << "\n\n----------------------------------------\n";
+            cout << "The list is empty. \nInserted item will be the first item.";
+            cout << "\n----------------------------------------\n\n";
         }
         else
         {
-            Node *temp = this->HEAD;
-
+            Node *temp;
+            temp = head;
             while (temp->next != nullptr)
             {
                 temp = temp->next;
             }
             temp->next = newNode;
+            cout << "\n----------------------------------------\n";
+            cout << "Successfully inserted at the end.";
+            cout << "\n----------------------------------------\n\n";
         }
     }
 
     void viewData()
     {
-        Node *temp = this->HEAD;
-
-        cout << "\n-------------------------------\n";
-        while (temp != nullptr)
+        if (head == nullptr)
         {
-            cout << temp->data << " -> ";
-            temp = temp->next;
+            cout << "\n----------------------------------------\n";
+            cout << "The list is empty.";
+            cout << "\n----------------------------------------\n\n";
         }
-
-        cout << "NULL" << endl;
-        cout << "-------------------------------\n\n";
+        else
+        {
+            Node *temp;
+            temp = head;
+            cout << "\n----------------------------------------\n";
+            while (temp != nullptr)
+            {
+                cout << temp->data << " -> ";
+                temp = temp->next;
+            }
+            cout << "NULL";
+            cout << "\n----------------------------------------\n\n";
+        }
     }
 };
 
@@ -80,12 +97,12 @@ int main()
 
     do
     {
-        cout << "press 1 to add data in the beginning." << endl;
-        cout << "press 2 to add data in the end." << endl;
-        cout << "press 3 to add data at any position." << endl;
-        cout << "press 4 to view data." << endl;
-        cout << "press 5 to exit." << endl;
-        cout << "Enter your choice: ";
+        cout << "1. Add data in the beginning." << endl;
+        cout << "2. Add data in the end." << endl;
+        cout << "3. Add data at any position." << endl;
+        cout << "4. View data." << endl;
+        cout << "5. Exit." << endl;
+        cout << "Enter your choice (1-5): ";
 
         cin >> choice;
 
@@ -94,7 +111,6 @@ int main()
         case 1:
         {
             int data;
-
             cout << "enter value to insert: ";
             cin >> data;
 
@@ -105,7 +121,6 @@ int main()
         case 2:
         {
             int data;
-
             cout << "enter value to insert: ";
             cin >> data;
 
@@ -115,6 +130,9 @@ int main()
         }
         case 3:
         {
+            cout << "\n----------------------------------------\n";
+            cout << "Coming Soon......";
+            cout << "\n----------------------------------------\n\n";
 
             break;
         }
@@ -126,10 +144,12 @@ int main()
         }
         case 5:
         {
-            cout << "bye...";
+            cout << "Byeee...." << endl;
+
             break;
         }
         }
+
     } while (choice != 5);
 
     return 0;
