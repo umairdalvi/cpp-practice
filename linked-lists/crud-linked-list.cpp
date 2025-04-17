@@ -24,6 +24,7 @@ class LinkedList
 {
 private:
     Node *head;
+    int counter = 0;
 
 public:
     LinkedList()
@@ -39,6 +40,8 @@ public:
         cout << "\n----------------------------------------\n";
         cout << "Successfully inserted at the beginning.";
         cout << "\n----------------------------------------\n\n";
+
+        counter++;
     }
 
     void addAtEnd(int data)
@@ -50,6 +53,8 @@ public:
             cout << "\n\n----------------------------------------\n";
             cout << "The list is empty. \nInserted item will be the first item.";
             cout << "\n----------------------------------------\n\n";
+
+            counter++;
         }
         else
         {
@@ -63,6 +68,8 @@ public:
             cout << "\n----------------------------------------\n";
             cout << "Successfully inserted at the end.";
             cout << "\n----------------------------------------\n\n";
+
+            counter++;
         }
     }
 
@@ -88,6 +95,50 @@ public:
             cout << "\n----------------------------------------\n\n";
         }
     }
+
+    void addAtPosition(int data, int pos)
+    {
+        Node *newNode = new Node(data);
+
+        if (pos > counter)
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "Invalid Position.";
+            cout << "\n----------------------------------------\n\n";
+            return;
+        }
+
+        if (pos == 0 || head == nullptr)
+        {
+            newNode->next = head;
+            head = newNode;
+
+            cout << "\n----------------------------------------\n";
+            cout << "List is empty. \nInserted item will be the first item";
+            cout << "\n----------------------------------------\n\n";
+
+            counter++;
+        }
+        else
+        {
+            Node *temp;
+            temp = head;
+
+            for (int i = 0; i < pos - 1; i++)
+            {
+                temp = temp->next;
+            }
+
+            newNode->next = temp->next;
+            temp->next = newNode;
+
+            cout << "\n----------------------------------------\n";
+            cout << "Successfully added at position.";
+            cout << "\n----------------------------------------\n\n";
+
+            counter++;
+        }
+    }
 };
 
 int main()
@@ -101,7 +152,8 @@ int main()
         cout << "2. Add data in the end." << endl;
         cout << "3. Add data at any position." << endl;
         cout << "4. View data." << endl;
-        cout << "5. Exit." << endl;
+        cout << "5. Update Data." << endl;
+        cout << "0. Exit." << endl;
         cout << "Enter your choice (1-5): ";
 
         cin >> choice;
@@ -130,9 +182,13 @@ int main()
         }
         case 3:
         {
-            cout << "\n----------------------------------------\n";
-            cout << "Coming Soon......";
-            cout << "\n----------------------------------------\n\n";
+            int data, pos;
+            cout << "enter position: ";
+            cin >> pos;
+            cout << "enter value to insert: ";
+            cin >> data;
+
+            list.addAtPosition(data, pos);
 
             break;
         }
@@ -142,7 +198,12 @@ int main()
 
             break;
         }
+
         case 5:
+        {
+        }
+
+        case 0:
         {
             cout << "Byeee...." << endl;
 
@@ -150,7 +211,7 @@ int main()
         }
         }
 
-    } while (choice != 5);
+    } while (choice != 0);
 
     return 0;
 }
