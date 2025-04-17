@@ -139,6 +139,36 @@ public:
             counter++;
         }
     }
+
+    void updateData(int data, int pos)
+    {
+        if (counter == 0 || head == nullptr)
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "List is empty.";
+            cout << "\n----------------------------------------\n\n";
+            return;
+        }
+        else if (pos >= counter)
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "Invalid Position.";
+            cout << "\n----------------------------------------\n\n";
+            return;
+        }
+
+        Node *temp = head;
+
+        for (int i = 0; i < pos; i++)
+        {
+            temp = temp->next;
+        }
+        temp->data = data;
+
+        cout << "\n----------------------------------------\n";
+        cout << "Data Updated Successfully.";
+        cout << "\n----------------------------------------\n\n";
+    }
 };
 
 int main()
@@ -201,6 +231,15 @@ int main()
 
         case 5:
         {
+            int data, pos;
+            cout << "enter position: ";
+            cin >> pos;
+            cout << "enter value to insert: ";
+            cin >> data;
+
+            list.updateData(data, pos);
+
+            break;
         }
 
         case 0:
