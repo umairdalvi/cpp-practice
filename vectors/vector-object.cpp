@@ -34,6 +34,11 @@ public:
         cout << "Course :  " << this->studentCourse << endl;
         cout << "--------------------------------------\n";
     }
+
+    int getId()
+    {
+        return this->studentId;
+    }
 };
 
 class StudentManager
@@ -87,6 +92,43 @@ public:
             }
         }
     }
+
+    void removeStudent()
+    {
+        int id;
+        cout << "Enter Student ID: ";
+        cin >> id;
+
+        for (int i = 0; i < students.size(); i++)
+        {
+            if (students[i].getId() == id)
+            {
+                students[i].displayInfo();
+
+                string confirm;
+                cout << "Are you sure you want to remove this student (y/n): ";
+                cin >> confirm;
+                if (confirm == "y" || confirm == "Y")
+                {
+                    cout << "\n--------------------------------------\n";
+                    students.erase(students.begin() + i);
+                    cout << "Student Removed Successfully.";
+                    cout << "\n--------------------------------------\n\n";
+                    return;
+                }
+                else
+                {
+                    cout << "\n--------------------------------------\n";
+                    cout << "Exiting.";
+                    cout << "\n--------------------------------------\n\n";
+                    return;
+                }
+            }
+        }
+        cout << "\n--------------------------------------\n";
+        cout << "Student with ID " << id << " not found";
+        cout << "\n--------------------------------------\n\n";
+    }
 };
 
 int main()
@@ -114,7 +156,7 @@ int main()
         }
         case 2:
         {
-            manager.displayAllStudents();
+            manager.removeStudent();
             break;
         }
         case 3:
