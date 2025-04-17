@@ -24,6 +24,16 @@ public:
         this->studentId = studentId;
         this->studentCourse = studentCourse;
     }
+
+    void displayInfo()
+    {
+        cout << "\n--------------------------------------\n";
+        cout << "ID     :  " << this->studentId << endl;
+        cout << "Name   :  " << this->studentName << endl;
+        cout << "Age    :  " << this->studentAge << endl;
+        cout << "Course :  " << this->studentCourse << endl;
+        cout << "--------------------------------------\n";
+    }
 };
 
 class StudentManager
@@ -60,6 +70,23 @@ public:
         cout << "Student added successfully";
         cout << "\n--------------------------------------\n\n";
     }
+
+    void displayAllStudents()
+    {
+        if (students.empty())
+        {
+            cout << "\n--------------------------------------\n";
+            cout << "No students to display.";
+            cout << "\n--------------------------------------\n\n";
+        }
+        else
+        {
+            for (int i = 0; i < students.size(); i++)
+            {
+                students[i].displayInfo();
+            }
+        }
+    }
 };
 
 int main()
@@ -87,12 +114,12 @@ int main()
         }
         case 2:
         {
-
+            manager.displayAllStudents();
             break;
         }
         case 3:
         {
-
+            manager.displayAllStudents();
             break;
         }
         case 4:
