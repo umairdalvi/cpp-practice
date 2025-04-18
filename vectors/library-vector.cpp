@@ -57,7 +57,7 @@ public:
         cout << "Name            :  " << this->name << endl;
         cout << "Author          :  " << this->author << endl;
         cout << "Available       :  ";
-        cout << (this->isIssued ? "No" : "Yes") << endl;
+        cout << (getIssueStatus() ? "No" : "Yes") << endl;
         if (getIssueStatus() == true)
         {
             cout << "Borrower name   :  " << this->borrower << endl;
