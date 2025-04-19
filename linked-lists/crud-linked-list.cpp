@@ -18,12 +18,32 @@ class LinkedList
 {
 private:
     Node *HEAD;
-    int counter;
+    int counter = 0;
 
 public:
     LinkedList()
     {
         HEAD = nullptr;
+    }
+
+    bool isEmpty()
+    {
+        if (counter == 0 || HEAD == nullptr)
+            return true;
+        else
+            return false;
+    }
+
+    bool checkEmpty()
+    {
+        if (isEmpty())
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "List is empty.";
+            cout << "\n----------------------------------------\n\n";
+            return true;
+        }
+        return false;
     }
 
     void addAtStart()
@@ -51,7 +71,7 @@ public:
 
         Node *newNode = new Node(data);
 
-        if (counter == 0 || HEAD == nullptr)
+        if (isEmpty())
         {
             HEAD = newNode;
             cout << "\n\n----------------------------------------\n";
@@ -79,13 +99,8 @@ public:
 
     void viewData()
     {
-        if (counter == 0 || HEAD == nullptr)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "List is empty.";
-            cout << "\n----------------------------------------\n\n";
+        if (checkEmpty())
             return;
-        }
 
         Node *temp;
         temp = HEAD;
@@ -99,17 +114,38 @@ public:
         cout << "\n----------------------------------------\n\n";
     }
 
-    void addInBetween()
+    void addAtPosition()
     {
-        int data, posn;
-        cout << "Enter data to insert: ";
-        cin >> data;
+        int posn;
         cout << "Enter position to insert data at: ";
         cin >> posn;
 
+        if (posn > counter || posn < 0)
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "Invalid Position.";
+            cout << "\n----------------------------------------\n\n";
+            return;
+        }
+
+        if (posn == 0)
+        {
+            addAtStart();
+            return;
+        }
+
+        if (posn == counter)
+        {
+            addAtEnd();
+            return;
+        }
+
+        int data;
+        cout << "Enter data to insert: ";
+        cin >> data;
         Node *newNode = new Node(data);
 
-        if (posn == 0 || HEAD == nullptr)
+        if (isEmpty())
         {
             HEAD = newNode;
             cout << "\n\n----------------------------------------\n";
@@ -117,13 +153,6 @@ public:
             cout << "\n----------------------------------------\n\n";
 
             counter++;
-            return;
-        }
-        if (posn >= counter)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "Invalid Position.";
-            cout << "\n----------------------------------------\n\n";
             return;
         }
 
@@ -147,17 +176,12 @@ public:
 
     void updateData()
     {
-        if (counter == 0 || HEAD == nullptr)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "List is empty.";
-            cout << "\n----------------------------------------\n\n";
+        if (checkEmpty())
             return;
-        }
 
         int data, posn;
 
-        cout << "Enter position to insert data at: ";
+        cout << "Enter position to update data at: ";
         cin >> posn;
         cout << "Enter new data to insert: ";
         cin >> data;
@@ -187,17 +211,41 @@ public:
 
     void deleteAtStart()
     {
+        if (checkEmpty())
+            return;
+
+        if (HEAD->next == nullptr)
+        {
+            delete HEAD;
+            HEAD = nullptr;
+
+            cout << "\n----------------------------------------\n";
+            cout << "First Node Deleted Successfully.";
+            cout << "\n----------------------------------------\n\n";
+
+            counter--;
+            return;
+        }
+
+        Node *temp;
+        temp = HEAD;
+
+        HEAD = HEAD->next;
+
+        delete temp;
+        temp = nullptr;
+
+        cout << "\n----------------------------------------\n";
+        cout << "First Node Deleted Successfully.";
+        cout << "\n----------------------------------------\n\n";
+
+        counter--;
     }
 
     void deleteAtEnd()
     {
-        if (counter == 0 || HEAD == nullptr)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "List is empty.";
-            cout << "\n----------------------------------------\n\n";
+        if (checkEmpty())
             return;
-        }
 
         if (HEAD->next == nullptr)
         {
@@ -233,6 +281,54 @@ public:
 
     void deleteAtPosition()
     {
+        if (checkEmpty())
+            return;
+
+        int posn;
+        cout << "Enter position to delete data from: ";
+        cin >> posn;
+
+        if (posn > counter || posn < 0)
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "Invalid Position.";
+            cout << "\n----------------------------------------\n\n";
+            return;
+        }
+
+        if (posn == 0)
+        {
+            deleteAtStart();
+            return;
+        }
+
+        if (posn == counter)
+        {
+            deleteAtEnd();
+            return;
+        }
+
+        Node *temp;
+        temp = HEAD;
+
+        for (int i = 0; i < (posn - 1); i++)
+        {
+            temp = temp->next;
+        }
+
+        Node *deleteNode = temp->next;
+        temp->next = deleteNode->next;
+
+        delete deleteNode;
+        deleteNode = nullptr;
+
+        counter--;
+
+        cout << "\n----------------------------------------\n";
+        cout << "Node at position " << posn << " deleted successfully.";
+        cout << "\n----------------------------------------\n\n";
+
+        return;
     }
 };
 
@@ -252,7 +348,7 @@ int main()
         cout << "6. Delete Data at the beginning." << endl;
         cout << "7. Delete Data at the end." << endl;
         cout << "8. Delete Data at given position ." << endl;
-        cout << "Enter your choice (1-5): ";
+        cout << "Enter your choice (0-8): ";
 
         cin >> choice;
 
@@ -272,7 +368,7 @@ int main()
         }
         case 3:
         {
-            list.addInBetween();
+            list.addAtPosition();
 
             break;
         }
@@ -308,61 +404,14 @@ int main()
         }
         case 0:
         {
+            cout << "\n----------------------------------------\n";
+            cout << "Thank you.";
+            cout << "\n----------------------------------------\n\n";
 
             break;
         }
         }
     } while (choice != 0);
-
-    switch (choice)
-    {
-    case 1:
-    {
-        list.addAtStart();
-
-        break;
-    }
-    case 2:
-    {
-
-        break;
-    }
-    case 3:
-    {
-
-        break;
-    }
-    case 4:
-    {
-
-        break;
-    }
-    case 5:
-    {
-
-        break;
-    }
-    case 6:
-    {
-
-        break;
-    }
-    case 7:
-    {
-
-        break;
-    }
-    case 8:
-    {
-
-        break;
-    }
-    case 0:
-    {
-
-        break;
-    }
-    }
 
     return 0;
 }
