@@ -3,30 +3,15 @@ using namespace std;
 
 class Node
 {
-    // private:
 public:
     int data;
     Node *next;
+
     Node(int data)
     {
         this->data = data;
         this->next = nullptr;
     }
-
-    // void setNext(Node *address)
-    // {
-    //     this->next = address;
-    // }
-
-    // Node *getNext()
-    // {
-    //     return this->next;
-    // }
-
-    // int getData()
-    // {
-    //     return this->data;
-    // }
 };
 
 class LinkedList
@@ -199,6 +184,56 @@ public:
         cout << "Data Updated Successfully.";
         cout << "\n----------------------------------------\n\n";
     }
+
+    void deleteAtStart()
+    {
+    }
+
+    void deleteAtEnd()
+    {
+        if (counter == 0 || HEAD == nullptr)
+        {
+            cout << "\n----------------------------------------\n";
+            cout << "List is empty.";
+            cout << "\n----------------------------------------\n\n";
+            return;
+        }
+
+        if (HEAD->next == nullptr)
+        {
+            delete HEAD;
+            HEAD = nullptr;
+
+            cout << "\n----------------------------------------\n";
+            cout << "Last Node Deleted Successfully.";
+            cout << "\n----------------------------------------\n\n";
+
+            counter--;
+
+            return;
+        }
+
+        Node *temp;
+        temp = HEAD;
+
+        while (temp->next->next != nullptr)
+        {
+            temp = temp->next;
+        }
+
+        delete temp->next;
+        temp->next = nullptr;
+
+        cout << "\n----------------------------------------\n";
+        cout << "Last Node Deleted Successfully.";
+        cout << "\n----------------------------------------\n\n";
+
+        counter--;
+    }
+
+    void deleteAtPosition()
+    {
+    }
 };
 
 int main()
@@ -208,12 +243,15 @@ int main()
 
     do
     {
+        cout << "0. Exit." << endl;
         cout << "1. Add data in the beginning." << endl;
         cout << "2. Add data in the end." << endl;
-        cout << "3. Add data at any position." << endl;
+        cout << "3. Add data at given position." << endl;
         cout << "4. View data." << endl;
         cout << "5. Update Data." << endl;
-        cout << "0. Exit." << endl;
+        cout << "6. Delete Data at the beginning." << endl;
+        cout << "7. Delete Data at the end." << endl;
+        cout << "8. Delete Data at given position ." << endl;
         cout << "Enter your choice (1-5): ";
 
         cin >> choice;
@@ -252,16 +290,19 @@ int main()
         }
         case 6:
         {
+            list.deleteAtStart();
 
             break;
         }
         case 7:
         {
+            list.deleteAtEnd();
 
             break;
         }
         case 8:
         {
+            list.deleteAtPosition();
 
             break;
         }
