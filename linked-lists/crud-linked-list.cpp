@@ -3,40 +3,50 @@ using namespace std;
 
 class Node
 {
-public:
+private:
     int data;
     Node *next;
 
-    Node()
-    {
-        this->data = 0;
-        this->next = nullptr;
-    };
-
+public:
     Node(int data)
     {
         this->data = data;
         this->next = nullptr;
-    };
+    }
+
+    void setNext(Node *address = nullptr)
+    {
+        this->next = address;
+    }
+
+    Node *getNext()
+    {
+        return this->next;
+    }
 };
 
 class LinkedList
 {
 private:
-    Node *head;
-    int counter = 0;
+    Node *HEAD;
+    int counter;
 
 public:
     LinkedList()
     {
-        head = nullptr;
+        HEAD = nullptr;
     }
 
-    void addAtStart(int data)
+    void addAtStart()
     {
+        int data;
+        cout << "Enter data to insert: ";
+        cin >> data;
+
         Node *newNode = new Node(data);
-        newNode->next = head;
-        head = newNode;
+
+        newNode->setNext(HEAD);
+        HEAD = newNode;
         cout << "\n----------------------------------------\n";
         cout << "Successfully inserted at the beginning.";
         cout << "\n----------------------------------------\n\n";
@@ -44,12 +54,17 @@ public:
         counter++;
     }
 
-    void addAtEnd(int data)
+    void addAtEnd()
     {
+        int data;
+        cout << "Enter data to insert: ";
+        cin >> data;
+
         Node *newNode = new Node(data);
-        if (head == nullptr)
+
+        if (counter == 0 || HEAD == nullptr)
         {
-            head = newNode;
+            HEAD = newNode;
             cout << "\n\n----------------------------------------\n";
             cout << "The list is empty. \nInserted item will be the first item.";
             cout << "\n----------------------------------------\n\n";
@@ -59,115 +74,12 @@ public:
         else
         {
             Node *temp;
-            temp = head;
-            while (temp->next != nullptr)
+            temp = HEAD;
+            while (temp->getNext() != nullptr)
             {
-                temp = temp->next;
+                temp = temp->getNext();
             }
-            temp->next = newNode;
-            cout << "\n----------------------------------------\n";
-            cout << "Successfully inserted at the end.";
-            cout << "\n----------------------------------------\n\n";
-
-            counter++;
         }
-    }
-
-    void viewData()
-    {
-        if (head == nullptr)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "The list is empty.";
-            cout << "\n----------------------------------------\n\n";
-        }
-        else
-        {
-            Node *temp;
-            temp = head;
-            cout << "\n----------------------------------------\n";
-            while (temp != nullptr)
-            {
-                cout << temp->data << " -> ";
-                temp = temp->next;
-            }
-            cout << "NULL";
-            cout << "\n----------------------------------------\n\n";
-        }
-    }
-
-    void addAtPosition(int data, int pos)
-    {
-        Node *newNode = new Node(data);
-
-        if (pos > counter)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "Invalid Position.";
-            cout << "\n----------------------------------------\n\n";
-            return;
-        }
-
-        if (pos == 0 || head == nullptr)
-        {
-            newNode->next = head;
-            head = newNode;
-
-            cout << "\n----------------------------------------\n";
-            cout << "List is empty. \nInserted item will be the first item";
-            cout << "\n----------------------------------------\n\n";
-
-            counter++;
-        }
-        else
-        {
-            Node *temp;
-            temp = head;
-
-            for (int i = 0; i < pos - 1; i++)
-            {
-                temp = temp->next;
-            }
-
-            newNode->next = temp->next;
-            temp->next = newNode;
-
-            cout << "\n----------------------------------------\n";
-            cout << "Successfully added at position.";
-            cout << "\n----------------------------------------\n\n";
-
-            counter++;
-        }
-    }
-
-    void updateData(int data, int pos)
-    {
-        if (counter == 0 || head == nullptr)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "List is empty.";
-            cout << "\n----------------------------------------\n\n";
-            return;
-        }
-        else if (pos >= counter)
-        {
-            cout << "\n----------------------------------------\n";
-            cout << "Invalid Position.";
-            cout << "\n----------------------------------------\n\n";
-            return;
-        }
-
-        Node *temp = head;
-
-        for (int i = 0; i < pos; i++)
-        {
-            temp = temp->next;
-        }
-        temp->data = data;
-
-        cout << "\n----------------------------------------\n";
-        cout << "Data Updated Successfully.";
-        cout << "\n----------------------------------------\n\n";
     }
 };
 
@@ -192,65 +104,102 @@ int main()
         {
         case 1:
         {
-            int data;
-            cout << "enter value to insert: ";
-            cin >> data;
-
-            list.addAtStart(data);
+            list.addAtStart();
 
             break;
         }
         case 2:
         {
-            int data;
-            cout << "enter value to insert: ";
-            cin >> data;
-
-            list.addAtEnd(data);
 
             break;
         }
         case 3:
         {
-            int data, pos;
-            cout << "enter position: ";
-            cin >> pos;
-            cout << "enter value to insert: ";
-            cin >> data;
-
-            list.addAtPosition(data, pos);
 
             break;
         }
         case 4:
         {
-            list.viewData();
 
             break;
         }
-
         case 5:
         {
-            int data, pos;
-            cout << "enter position: ";
-            cin >> pos;
-            cout << "enter value to insert: ";
-            cin >> data;
-
-            list.updateData(data, pos);
 
             break;
         }
+        case 6:
+        {
 
+            break;
+        }
+        case 7:
+        {
+
+            break;
+        }
+        case 8:
+        {
+
+            break;
+        }
         case 0:
         {
-            cout << "Byeee...." << endl;
 
             break;
         }
         }
-
     } while (choice != 0);
+
+    switch (choice)
+    {
+    case 1:
+    {
+        list.addAtStart();
+
+        break;
+    }
+    case 2:
+    {
+
+        break;
+    }
+    case 3:
+    {
+
+        break;
+    }
+    case 4:
+    {
+
+        break;
+    }
+    case 5:
+    {
+
+        break;
+    }
+    case 6:
+    {
+
+        break;
+    }
+    case 7:
+    {
+
+        break;
+    }
+    case 8:
+    {
+
+        break;
+    }
+    case 0:
+    {
+
+        break;
+    }
+    }
 
     return 0;
 }
