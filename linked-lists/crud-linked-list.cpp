@@ -116,11 +116,11 @@ public:
 
     void addAtPosition()
     {
-        int posn;
+        int pos;
         cout << "Enter position to insert data at: ";
-        cin >> posn;
+        cin >> pos;
 
-        if (posn > counter || posn < 0)
+        if (pos > counter || pos < 0)
         {
             cout << "\n----------------------------------------\n";
             cout << "Invalid Position.";
@@ -128,13 +128,13 @@ public:
             return;
         }
 
-        if (posn == 0)
+        if (pos == 0)
         {
             addAtStart();
             return;
         }
 
-        if (posn == counter)
+        if (pos == counter)
         {
             addAtEnd();
             return;
@@ -159,7 +159,7 @@ public:
         Node *temp;
         temp = HEAD;
 
-        for (int i = 0; i < (posn - 1); i++)
+        for (int i = 0; i < (pos - 1); i++)
         {
             temp = temp->next;
         }
@@ -179,14 +179,14 @@ public:
         if (checkEmpty())
             return;
 
-        int data, posn;
+        int data, pos;
 
         cout << "Enter position to update data at: ";
-        cin >> posn;
+        cin >> pos;
         cout << "Enter new data to insert: ";
         cin >> data;
 
-        if (posn >= counter)
+        if (pos >= counter)
         {
             cout << "\n----------------------------------------\n";
             cout << "Invalid Position.";
@@ -197,7 +197,7 @@ public:
         Node *temp;
         temp = HEAD;
 
-        for (int i = 0; i < posn; i++)
+        for (int i = 0; i < pos; i++)
         {
             temp = temp->next;
         }
@@ -284,11 +284,11 @@ public:
         if (checkEmpty())
             return;
 
-        int posn;
+        int pos;
         cout << "Enter position to delete data from: ";
-        cin >> posn;
+        cin >> pos;
 
-        if (posn > counter || posn < 0)
+        if (pos > counter || pos < 0)
         {
             cout << "\n----------------------------------------\n";
             cout << "Invalid Position.";
@@ -296,13 +296,13 @@ public:
             return;
         }
 
-        if (posn == 0)
+        if (pos == 0)
         {
             deleteAtStart();
             return;
         }
 
-        if (posn == counter)
+        if (pos == counter)
         {
             deleteAtEnd();
             return;
@@ -311,7 +311,7 @@ public:
         Node *temp;
         temp = HEAD;
 
-        for (int i = 0; i < (posn - 1); i++)
+        for (int i = 0; i < (pos - 1); i++)
         {
             temp = temp->next;
         }
@@ -325,7 +325,7 @@ public:
         counter--;
 
         cout << "\n----------------------------------------\n";
-        cout << "Node at position " << posn << " deleted successfully.";
+        cout << "Node at position " << pos << " deleted successfully.";
         cout << "\n----------------------------------------\n\n";
 
         return;
