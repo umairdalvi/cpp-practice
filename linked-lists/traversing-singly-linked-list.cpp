@@ -7,12 +7,6 @@ public:
     int data;
     Node *next;
 
-    Node()
-    {
-        this->data = 0;
-        this->next = nullptr;
-    }
-
     Node(int data)
     {
         this->data = data;
@@ -22,24 +16,27 @@ public:
 
 int main()
 {
-    Node *HEAD = nullptr;
-
-    HEAD = new Node(10);
+    Node *head = nullptr;
+    head = new Node(10);
 
     Node *current = new Node(20);
-    HEAD->next = current;
+    head->next = current;
 
     current = new Node(30);
-    HEAD->next->next = current;
+    head->next->next = current;
 
-    Node *temp = nullptr;
-    temp = HEAD;
+    current = new Node(40);
+    head->next->next->next = current;
+
+    Node *temp = head;
 
     while (temp != nullptr)
     {
-        cout << temp->data << endl;
+        cout << temp->data << " -> ";
         temp = temp->next;
     }
+
+    cout << "NULL";
 
     return 0;
 }

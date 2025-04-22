@@ -6,34 +6,29 @@ class Node
 public:
     int data;
     Node *next;
+
+    Node(int data)
+    {
+        this->data = data;
+        this->next = nullptr;
+    }
 };
 
 int main()
 {
-    Node *HEAD = nullptr;
+    Node *head = nullptr;
 
-    HEAD = new Node();
+    Node *node1 = new Node(10);
+    Node *node2 = new Node(20);
+    Node *node3 = new Node(30);
 
-    HEAD->data = 20;
-    HEAD->next = nullptr;
+    head = node1;
+    head->next = node2;
+    node2->next = node3;
 
-    Node *n2 = new Node();
-
-    n2->data = 30;
-    n2->next = nullptr;
-
-    HEAD->next = n2;
-
-    Node *n3 = new Node();
-
-    n3->data = 40;
-    n3->next = nullptr;
-
-    n2->next = n3;
-
-    cout << HEAD->data << endl;
-    cout << HEAD->next->data << endl;
-    cout << HEAD->next->next->data;
+    cout << head->data << endl;
+    cout << head->next->data << endl;
+    cout << head->next->next->data << endl;
 
     return 0;
 }
