@@ -3,7 +3,7 @@ using namespace std;
 
 int sumOfDigits(int n)
 {
-    if (n <= 10)
+    if (n < 10)
     {
         return n;
     }
