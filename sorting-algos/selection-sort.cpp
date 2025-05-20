@@ -35,25 +35,22 @@ int main()
 
 void selectionSort(vector<int> &arr)
 {
-
     for (int i = 0; i < arr.size() - 1; i++)
     {
+        int min = i;
         for (int j = i + 1; j < arr.size(); j++)
         {
-            int min = i;
-
             if (arr[j] < arr[min])
             {
                 min = j;
             }
+        }
 
-            if (min != i)
-            {
-                int temp = arr[i];
-                arr[i] = arr[min];
-                arr[min] = temp;
-            }
-            
+        if (min != i)
+        {
+            int temp = arr[i];
+            arr[i] = arr[min];
+            arr[min] = temp;
         }
     }
 }
