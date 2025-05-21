@@ -6,7 +6,12 @@ void selectionSort(vector<int> &);
 
 int main()
 {
-    vector<int> arr(5);
+    int size;
+    cout << "Enter size of array: ";
+
+    cin >> size;
+
+    vector<int> arr(size);
 
     for (int i = 0; i < arr.size(); i++)
     {

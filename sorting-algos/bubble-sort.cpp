@@ -4,8 +4,12 @@ using namespace std;
 
 int main()
 {
+    int size;
+    cout << "Enter size of array: ";
 
-    vector<int> arr(5);
+    cin >> size;
+    
+    vector<int> arr(size);
     int temp;
 
     for (int i = 0; i < arr.size(); i++)
